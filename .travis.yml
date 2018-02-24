@@ -1,0 +1,35 @@
+
+language: php
+
+php:
+ - 5.6
+ - hhvm
+ - 7.0
+ - 7.1
+ - 7.2
+
+env:
+ - TESTS=true
+
+matrix:
+  exclude:
+   - php: 7.0
+     env: TESTS=true
+  include:
+   - php: 7.0
+     env: TESTS=true ANALYSES=true MUTATION_TEST=true
+
+install:
+ - composer update
+
+before_script:
+ - if [ "${COVERAGE}" != "true" ] && [ "$TRAVIS_PHP_VERSION" != "hhvm" ] && [ "$TRAVIS_PHP_VERSION" != "nightly" ]; then phpenv config-rm xdebug.ini && echo "xdebug disabled"; fi
+
+script:
+ - tools/run_tests.sh
+ - tools/static_analyses.sh
+
+after_script:
+ - if [ "${COVERAGE}" != "1" ]; then
+     tools/upload_coverage.sh
+   fi

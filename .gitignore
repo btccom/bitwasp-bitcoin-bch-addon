@@ -1,0 +1,11 @@
+test.php
+vendor
+bin/*
+.idea
+*~
+composer.lock
+coverage.clover
+infection.phar
+infection.phar.pubkey
+build/
+tests/Data/bitcoinconsensus_testcases
