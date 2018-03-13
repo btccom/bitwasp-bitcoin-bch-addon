@@ -2,20 +2,16 @@
 
 namespace Btccom\BitcoinCash\Network\Networks;
 
-use Btccom\BitcoinCash\Network\Networks\AbstractBitcoinCash;
-use BitWasp\Bitcoin\Network\NetworkFactory;
-
-class BitcoinCashRegtest extends AbstractBitcoinCash
+class BitcoinCashRegtest extends BitcoinCashTestnet
 {
     /**
-     * BitcoinCash constructor.
-     * @throws \Exception
+     * @var string
      */
-    public function __construct()
-    {
-        parent::__construct(
-            NetworkFactory::bitcoinRegtest(),
-            "bchreg"
-        );
-    }
+    protected $cashAddressPrefix = 'bchreg';
+
+    /**
+     * {@inheritdoc}
+     * @see Network::$p2pMagic
+     */
+    protected $p2pMagic = "dab5bffa";
 }

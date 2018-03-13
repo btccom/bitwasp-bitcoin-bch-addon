@@ -23,15 +23,8 @@ class AddressCreatorTest extends AbstractTestCase
 {
     private function decodingCashAddrSucceeds(AddressCreator $creator, $address, NetworkInterface $network)
     {
-        $failure = null;
-        try {
-            $decoded = $creator->fromString($address, $network);
-            $this->assertInstanceOf(CashAddress::class, $decoded);
-        } catch (\Exception $e) {
-            $failure = $e;
-        } finally {
-            $this->assertNull($failure, "decoding cashaddr should succeed");
-        }
+        $decoded = $creator->fromString($address, $network);
+        $this->assertInstanceOf(CashAddress::class, $decoded);
     }
 
     private function decodingCashAddrFails(AddressCreator $creator, $address, NetworkInterface $network)
