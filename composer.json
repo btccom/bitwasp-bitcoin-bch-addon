@@ -1,4 +1,19 @@
 {
+  "name": "btccom/bitwasp-bitcoin-bch-addon",
+  "homepage": "https://github.com/btccom/bitwasp-bitcoin-bch-addon",
+  "type": "library",
+  "description": "Bridge to bitwasp/bitcoin for bch.",
+  "keywords": ["bcash", "bch", "bitcoin cash", "cashaddr"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "btccom"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/btccom/bitwasp-bitcoin-bch-addon/issues",
+    "source": "https://github.com/btccom/bitwasp-bitcoin-bch-addon"
+  },
   "autoload": {
     "psr-4": {
       "Btccom\\BitcoinCash\\": "src/"
