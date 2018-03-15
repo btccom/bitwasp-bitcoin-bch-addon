@@ -17,7 +17,7 @@ matrix:
      env: TESTS=true
   include:
    - php: 7.0
-     env: TESTS=true ANALYSES=true MUTATION_TEST=true
+     env: TESTS=true ANALYSES=true COVERAGE=true MUTATION_TEST=true
 
 install:
  - composer update
