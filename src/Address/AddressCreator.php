@@ -99,7 +99,7 @@ class AddressCreator extends BaseAddressCreator
             }
 
             if (($base32Address = $this->readCashAddress(
-                sprintf("%s:%s", $network->getCashAddressPrefix(), $strAddress),
+                sprintf("%s:%s", $network->getCashAddressPrefix(), strtolower($strAddress)),
                 $network
             ))) {
                 return $base32Address;
