@@ -1,0 +1,4 @@
+90c90
+<         if (null === $this->signatureCreator) {
+---
+>         if (count($this->signatureCreator) === 0) {
