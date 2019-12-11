@@ -28,11 +28,6 @@
     "btccom/cashaddress": "v0.0.3",
     "bitwasp/bitcoin": "~1.0"
   },
-  "scripts": {
-    "post-update-cmd": [
-      "patch vendor/bitwasp/bitcoin/src/Transaction/Factory/Signer.php Signer.php.patch"
-    ]
-  },
   "require-dev": {
     "phpunit/phpunit": "^5.7",
     "squizlabs/php_codesniffer": "v2.0.0"
