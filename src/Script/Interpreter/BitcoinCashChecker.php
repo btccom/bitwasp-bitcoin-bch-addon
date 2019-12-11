@@ -30,7 +30,7 @@ class BitcoinCashChecker extends CheckerBase
      * @return BufferInterface
      * @throws \Exception
      */
-    public function getSigHash(ScriptInterface $script, $sigHashType, $sigVersion): \BitWasp\Buffertools\BufferInterface
+    public function getSigHash(ScriptInterface $script, int $sigHashType, int $sigVersion): \BitWasp\Buffertools\BufferInterface
     {
         if ($sigVersion !== 0) {
             throw new \RuntimeException("SigVersion must be 0");
