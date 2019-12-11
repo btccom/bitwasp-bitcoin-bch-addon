@@ -34,7 +34,7 @@ class CheckerCreator extends CheckerCreatorBase
      * @param TransactionOutputInterface $txOut
      * @return CheckerBase
      */
-    public function create(TransactionInterface $tx, $nInput, TransactionOutputInterface $txOut): \BitWasp\Bitcoin\Script\Interpreter\CheckerBase
+    public function create(TransactionInterface $tx, int $nInput, TransactionOutputInterface $txOut): \BitWasp\Bitcoin\Script\Interpreter\CheckerBase
     {
         return new BitcoinCashChecker(
             $this->ecAdapter,
