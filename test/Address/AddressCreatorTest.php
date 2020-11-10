@@ -52,6 +52,19 @@ class AddressCreatorTest extends AbstractTestCase
         $this->decodingCashAddrFails($creator, $address, $network);
     }
 
+    public function testUpperCaseCashAddr()
+    {
+        $network = new BitcoinCash();
+        $address = "QPM2QSZNHKS23Z7629MMS6S4CWEF74VCWVY22GDX6A";
+        $creator = new AddressCreator();
+        $this->decodingCashAddrSucceeds($creator, $address, $network);
+
+        $address2 = "bitcoincash:QPM2QSZNHKS23Z7629MMS6S4CWEF74VCWVY22GDX6A";
+        $creator2 = new AddressCreator();
+        $this->decodingCashAddrSucceeds($creator2, $address2, $network);
+
+    }
+
     public function testReadsP2SHBase58Address()
     {
         $network = new BitcoinCashTestnet();
