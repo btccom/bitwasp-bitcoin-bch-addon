@@ -94,7 +94,7 @@ class AddressCreator extends BaseAddressCreator
         }
 
         if ($this->useNewCashAddress && $network instanceof BitcoinCashNetworkInterface) {
-            if (($base32Address = $this->readCashAddress($strAddress, $network))) {
+            if (($base32Address = $this->readCashAddress(strtolower($strAddress), $network))) {
                 return $base32Address;
             }
 
