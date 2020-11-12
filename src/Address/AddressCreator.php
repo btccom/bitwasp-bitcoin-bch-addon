@@ -10,7 +10,6 @@ use BitWasp\Bitcoin\Address\ScriptHashAddress;
 use BitWasp\Bitcoin\Base58;
 use BitWasp\Bitcoin\Bitcoin;
 use BitWasp\Bitcoin\Exceptions\UnrecognizedAddressException;
-use BitWasp\Bitcoin\Exceptions\UnrecognizedScriptForAddressException;
 use BitWasp\Bitcoin\Network\NetworkInterface;
 use BitWasp\Bitcoin\Script\Classifier\OutputClassifier;
 use BitWasp\Bitcoin\Script\ScriptInterface;
@@ -85,7 +84,7 @@ class AddressCreator extends BaseAddressCreator
      * @return Base58AddressInterface|CashAddress
      * @throws UnrecognizedAddressException
      */
-    public function fromString($strAddress, NetworkInterface $network = null)
+    public function fromString(string $strAddress, NetworkInterface $network = null): \BitWasp\Bitcoin\Address\Address
     {
         $network = $network ?: Bitcoin::getNetwork();
 
@@ -112,9 +111,9 @@ class AddressCreator extends BaseAddressCreator
     /**
      * @param ScriptInterface $script
      * @return Base58AddressInterface|CashAddress
-     * @throws UnrecognizedScriptForAddressException
+     * @throws UnrecognizedAddressException
      */
-    public function fromOutputScript(ScriptInterface $script)
+    public function fromOutputScript(ScriptInterface $script): \BitWasp\Bitcoin\Address\Address
     {
         $decode = (new OutputClassifier())->decode($script);
 
@@ -136,7 +135,7 @@ class AddressCreator extends BaseAddressCreator
                 }
                 break;
             default:
-                throw new UnrecognizedScriptForAddressException('Script type is not associated with an address');
+                throw new UnrecognizedAddressException('Script type is not associated with an address');
         }
     }
 }

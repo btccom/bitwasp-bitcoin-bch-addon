@@ -7,7 +7,7 @@ use Btccom\BitcoinCash\Network\Networks\BitcoinCashTestnet;
 use Btccom\BitcoinCash\Test\AbstractTestCase;
 use Btccom\BitcoinCash\Transaction\Factory\Checker\CheckerCreator as BitcoinCashCheckerCreator;
 use BitWasp\Bitcoin\Bitcoin;
-use BitWasp\Bitcoin\Key\PrivateKeyFactory;
+use BitWasp\Bitcoin\Key\Factory\PrivateKeyFactory;
 use BitWasp\Bitcoin\Script\ScriptFactory;
 use BitWasp\Bitcoin\Transaction\Factory\Signer;
 use BitWasp\Bitcoin\Transaction\Factory\TxBuilder;
@@ -25,9 +25,12 @@ class SignerTest extends AbstractTestCase
         $txid = "40c8a218923f23df3692530fa8e475251c50c7d630dccbdfbd92ba8092f4aa13";
         $vout = 0;
         $network = new BitcoinCashTestnet();
+        Bitcoin::setNetwork($network);
 
         $wif = "cTNwkxh7nVByhc3i7BH6eaBFQ4yVs6WvXBGBoA9xdKiorwcYVACc";
-        $keyPair = PrivateKeyFactory::fromWif($wif, null, $network);
+        $ecAdapter = Bitcoin::getEcAdapter();
+        $keyFactory = new PrivateKeyFactory($ecAdapter);
+        $keyPair = $keyFactory->fromWif($wif, null, $network);
 
         $spk = ScriptFactory::scriptPubKey()->payToPubKey($keyPair->getPublicKey());
         $addressCreator = new AddressCreator(true);
@@ -39,7 +42,6 @@ class SignerTest extends AbstractTestCase
             ->output($value, $dest)
         ;
 
-        $ecAdapter = Bitcoin::getEcAdapter();
         $checkerCreator = BitcoinCashCheckerCreator::fromEcAdapter($ecAdapter);
 
         $txs = new Signer($txb->get());

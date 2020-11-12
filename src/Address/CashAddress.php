@@ -67,7 +67,7 @@ class CashAddress extends Address implements CashAddressInterface
      * @throws \CashAddr\Exception\CashAddressException
      * @throws BitcoinCashNetworkRequiredException
      */
-    public function getAddress(NetworkInterface $network = null)
+    public function getAddress(NetworkInterface $network = null): string
     {
         if (null === $network) {
             $network = Bitcoin::getNetwork();
@@ -99,7 +99,7 @@ class CashAddress extends Address implements CashAddressInterface
     /**
      * @return \BitWasp\Bitcoin\Script\ScriptInterface
      */
-    public function getScriptPubKey()
+    public function getScriptPubKey(): \BitWasp\Bitcoin\Script\ScriptInterface
     {
         if ($this->type === ScriptType::P2PKH) {
             return ScriptFactory::scriptPubKey()->p2pkh($this->hash);
